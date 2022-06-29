@@ -1,22 +1,15 @@
 package com.example.insertion_sort_mpj;
 
-public class InsertionSort {
-    public ListSortable list;
-    public InsertionSort(ListSortable listSortable) {
-        this.list = listSortable;
-    }
+import java.util.List;
 
-    public void sortSequential() {
-        for (int i = 1; i < this.list.size; i++) {
+public class InsertionSort {
+    public static void sortSequential(List<Integer> array) {
+        for (int i = 1; i < array.size(); i++) {
             int j = i;
-            while (j > 0 && this.list.getElement(j - 1) > this.list.getElement(j)) {
-                this.list.swapElements(j, j - 1);
+            while (j > 0 && array.get(j - 1) > array.get(j)) {
+                ListHelper.swapElements(array, j, j - 1);
                 j = j - 1;
             }
         }
-    }
-
-    public void printList() {
-        System.out.println(this.list);
     }
 }
