@@ -31,6 +31,7 @@ public class MPIHelper {
         MPI.COMM_WORLD.Bcast(initialArray, 0, arraySize, MPI.INT, MPIHelper.MASTER_PROCESS_ID);
 
         int[] subArray = MPIHelper.takeSubArrayMPI(initialArray);
+        InsertionSort.sortSequential(subArray);
         System.out.println("Process" + processId + ":" + Arrays.toString(subArray));
 
 
