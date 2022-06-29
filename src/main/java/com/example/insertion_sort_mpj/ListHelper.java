@@ -2,14 +2,12 @@ package com.example.insertion_sort_mpj;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ListHelper {
     public static final int MIN_NUMBER = -100;
     public static final int MAX_NUMBER = 100;
 
-    public static List<Integer> generatorRandomList(int size) {
+    public static List<Integer> generateRandomList(int size) {
         List<Integer> array = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
             array.add(RandomNumber.getInRange(MIN_NUMBER, MAX_NUMBER));
@@ -40,7 +38,5 @@ public class ListHelper {
         subLists.add(lastSubList);
 
         return subLists;
-
-
     }
 }
