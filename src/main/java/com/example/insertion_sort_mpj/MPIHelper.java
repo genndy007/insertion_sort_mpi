@@ -24,6 +24,7 @@ public class MPIHelper {
         int processesNum = MPI.COMM_WORLD.Size();
 
         int[] initialArray = new int[arraySize];
+        int[] finalArray = new int[arraySize];
         if (processId == MPIHelper.MASTER_PROCESS_ID) {
             initialArray = ArrayHelper.generateRandomArray(arraySize);
             System.out.println(Arrays.toString(initialArray));
@@ -33,6 +34,14 @@ public class MPIHelper {
         int[] subArray = MPIHelper.takeSubArrayMPI(initialArray);
         InsertionSort.sortSequential(subArray);
         System.out.println("Process" + processId + ":" + Arrays.toString(subArray));
+
+        MPI.COMM_WORLD.Gather(subArray, 0, subArray.length, MPI.INT, finalArray, processId * subArray.length, subArray.length, MPI.INT, MPIHelper.MASTER_PROCESS_ID);
+
+        if (processId == MPIHelper.MASTER_PROCESS_ID) {
+            System.out.println("Final array before:" + Arrays.toString(finalArray));
+            InsertionSort.sortSequential(finalArray);
+            System.out.println("Final array after:" + Arrays.toString(finalArray));
+        }
 
 
         MPI.Finalize();
