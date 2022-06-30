@@ -18,6 +18,13 @@ public class MPIHelper {
         return Arrays.copyOfRange(array, processId * chunkSize, (processId + 1) * chunkSize);
     }
 
+    public static void runSeqSort(int arraySize) {
+        int[] initialArray = ArrayHelper.generateRandomArray(arraySize);
+        System.out.println("Array before:" + Arrays.toString(initialArray));
+        InsertionSort.sortSequential(initialArray);
+        System.out.println("Array after:" + Arrays.toString(initialArray));
+    }
+
     public static void runMPISort(String[] MPI_args, int arraySize) {
         MPI.Init(MPI_args);
         int processId = MPI.COMM_WORLD.Rank();
